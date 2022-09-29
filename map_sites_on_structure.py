@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 #
+'''
+This script takes as input a pdb file and marks the requested positions (setting B-factor to 1);
+It also uses a fasta with at least one sequence (>$name_long) corresponding to the protein sequence in pdb  
+'''
+
 import argparse
 import pyfastx
 import re
