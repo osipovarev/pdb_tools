@@ -73,6 +73,8 @@ def replace_pdb_bfactor(pdb, sites, index_to_keep, bvalue):
                 last_field = line.rstrip()[-12:]
                 if res_number in index_to_keep:
                     short_index = index_to_keep[res_number]
+                    if sites == []:
+                        new_bfactor = 0.00
                     if short_index in sites:
                         new_bfactor = bvalue
                     else:
@@ -104,7 +106,10 @@ def main():
 
     ## Go through PDB file and assign new b-factor values to corresponding positions in the structure
     site_line = args.sites
-    sites = [int(i) for i in  site_line.split(',')]
+    if site_line == ',':
+        sites = []
+    else:
+        sites = [int(i) for i in  site_line.split(',')]
     replace_pdb_bfactor(args.pdb, sites, index_to_keep, args.bvalue)
 
 
